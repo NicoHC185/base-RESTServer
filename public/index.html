@@ -35,7 +35,7 @@
             // console.log('ID token:',response.credential)
             const body= {id_token: response.credential}
 
-            fetch("http://restserver-curso-nodejs-nhc.herokuapp.com/api/auth/google", {
+            fetch("https://restserver-curso-nodejs-nhc.herokuapp.com/api/auth/google", {
                 method: 'POST',
                 headers: {
                     'Content-Type':'application/json',
