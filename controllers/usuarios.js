@@ -1,6 +1,5 @@
 const {response, request} = require('express')
 const bcryptjs = require('bcryptjs')
-
 const Usuario = require('../models/usuario') 
 
 const usuariosGet = async(req = request, res = response) =>{
@@ -62,15 +61,14 @@ const usuariosPatch = (req, res) =>{
 
 const usuariosDelete = async (req, res = response) =>{
     const {id} = req.params
-
+    
     //borrar un usuario fisicamente
     // const usuario = await Usuario.findByIdAndDelete(id)
 
-    const usuario = await Usuario.findByIdAndUpdate(id,{estado: false})
-
+    const usuarioDel = await Usuario.findByIdAndUpdate(id,{estado: false})
     res.json({
         msg: 'delete api-controlador',
-        usuario
+        usuarioDel,
     })
 }
 
