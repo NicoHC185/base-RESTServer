@@ -7,8 +7,18 @@ class Server{
     constructor(){
         this.app = express()
         this.port = process.env.PORT
-        this.usuariosPath = '/api/usuarios'
-        this.authPath = '/api/auth/'
+
+        // this.usuariosPath = '/api/usuarios'
+        // this.authPath = '/api/auth/'
+        
+        this.paths = {
+            usuariosPath :'/api/usuarios',
+            buscar: '/api/buscar',
+            authPath :'/api/auth',
+            categorias: '/api/categorias',
+            productos: '/api/productos',
+        }
+
         //Conectar a base de datos
         this.conectarDB()
         //Middlewwares
@@ -32,8 +42,11 @@ class Server{
     }
     
     routes(){
-        this.app.use(this.authPath, require('../routes/auth'))
-        this.app.use(this.usuariosPath,require('../routes/usuarios'))
+        this.app.use(this.paths.authPath, require('../routes/auth'))
+        this.app.use(this.paths.buscar,require('../routes/buscar'))
+        this.app.use(this.paths.categorias,require('../routes/categorias'))
+        this.app.use(this.paths.productos,require('../routes/productos'))
+        this.app.use(this.paths.usuariosPath,require('../routes/usuarios'))
     }
 
     listen(){
