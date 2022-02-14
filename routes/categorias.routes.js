@@ -1,7 +1,7 @@
 const {Router} = require('express')
 const { check } = require('express-validator')
-const { crearCategoria, obtenerCategorias, obtenerCategoria, actualizarCategoria, borrarCategoria} = require('../controllers/categorias')
-const { existeCategoria } = require('../helpers/db-validators')
+const { crearCategoria, obtenerCategorias, obtenerCategoria, actualizarCategoria, borrarCategoria} = require('../controllers/categorias.controller')
+const { existeCategoria } = require('../helpers/db-validators.helper')
 const {
     validarCampos,
     validarJWT,

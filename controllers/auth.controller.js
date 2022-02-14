@@ -1,8 +1,8 @@
 const bcryptjs = require('bcryptjs')
 const { response } = require('express')
 const { json } = require('express/lib/response')
-const { generarJWT } = require('../helpers/generar-JWT')
-const { googleVerify } = require('../helpers/google-verify')
+const { generarJWT } = require('../helpers/generar-JWT.helper')
+const { googleVerify } = require('../helpers/google-verify.helper')
 const Usuario = require('../models/usuario')
 
 const loginController = async(req, res = response ) => {
@@ -74,8 +74,6 @@ const googleSingIn = async(req, res = response)=>{
 
         //generar jwt
         const token = await generarJWT(usuario.id)
-
-
         res.json({
             usuario,
             token

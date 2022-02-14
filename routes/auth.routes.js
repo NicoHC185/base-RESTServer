@@ -3,7 +3,7 @@ const { check } = require('express-validator')
 const { 
     googleSingIn,
     loginController,
-} = require("../controllers/auth")
+} = require("../controllers/auth.controller")
 
 const { validarCampos, } = require('../middlewares/validar-campos')
 

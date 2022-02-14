@@ -36,10 +36,17 @@ const existeProductoPorID = async(id='')=>{
     if(!producto) throw new Error(`La id ${id} ingresada no se encuentra registrada`)
 }
 
+const validCollections = async(collection, collections)=>{
+    const included  = collections.includes(collection)
+    if(!included) throw new Error(`The collection ${collection} isnot valid, valid collections = ${collections} `)
+    return true
+}
+
 module.exports = {
     esRolValido,
     emailExiste,
     existeUsuarioPorID,
     existeCategoria,
-    existeProductoPorID
+    existeProductoPorID,
+    validCollections
 }

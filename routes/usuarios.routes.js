@@ -18,7 +18,7 @@ const {
     esRolValido,
     emailExiste,
     existeUsuarioPorID,
-} = require('../helpers/db-validators')
+} = require('../helpers/db-validators.helper')
 
 const { 
     usuariosGet, 
@@ -26,7 +26,7 @@ const {
     usuariosPost,
     usuariosDelete,
     usuariosPatch
-} = require('../controllers/usuarios')
+} = require('../controllers/usuarios.controller')
 
 router.get('/',[
     validarCampos

@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
-const { dbConnection } = require('../DB/config')
+const { dbConnection } = require('../DB/config.mongoDB')
+const fileUpload = require('express-fileupload')
 
 class Server{
 
@@ -17,6 +18,7 @@ class Server{
             authPath :'/api/auth',
             categorias: '/api/categorias',
             productos: '/api/productos',
+            upLoads: '/api/uploads',
         }
 
         //Conectar a base de datos
@@ -39,14 +41,22 @@ class Server{
 
         //directorio publico
         this.app.use(express.static('public'))
+
+        //manejar la carga de archivos
+        this.app.use(fileUpload({
+            useTempFiles : true,
+            tempFileDir : '/tmp/',
+            createParentPath: true,
+        }));
     }
     
     routes(){
-        this.app.use(this.paths.authPath, require('../routes/auth'))
-        this.app.use(this.paths.buscar,require('../routes/buscar'))
-        this.app.use(this.paths.categorias,require('../routes/categorias'))
-        this.app.use(this.paths.productos,require('../routes/productos'))
-        this.app.use(this.paths.usuariosPath,require('../routes/usuarios'))
+        this.app.use(this.paths.authPath, require('../routes/auth.routes'))
+        this.app.use(this.paths.buscar,require('../routes/buscar.routes'))
+        this.app.use(this.paths.categorias,require('../routes/categorias.routes'))
+        this.app.use(this.paths.productos,require('../routes/productos.routes'))
+        this.app.use(this.paths.upLoads,require('../routes/uploads.routes'))
+        this.app.use(this.paths.usuariosPath,require('../routes/usuarios.routes'))
     }
 
     listen(){
